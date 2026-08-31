@@ -1,0 +1,55 @@
+name: lighthouse-nightly
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL для проверки Lighthouse
+        required: false
+        default: "https://web-production-e3ae22.up.railway.app/"
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  lighthouse:
+    runs-on:
+      - self-hosted
+      - opencode
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Run Lighthouse via OpenCode
+        uses: anomalyco/opencode/github@latest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          model: vllm/deepseek-v4-flash
+          use_github_token: true
+          prompt: |
+            Запусти ночную проверку производительности сайта Lighthouse CLI.
+
+            Целевой URL: ${{ inputs.url }}
+
+            Сделай шаги:
+            1. Установи Lighthouse CLI (npm install -g lighthouse или npx lighthouse).
+            2. Запусти аудит: lighthouse "${{ inputs.url }}" --chrome-flags="--headless --no-sandbox" --output=html --output=json --output-path=lighthouse-reports/report --quiet.
+            3. Создай файл lighthouse-reports/LIGHTHOUSE_REPORT.md на русском языке: сводка по категориям (Performance, Accessibility, Best Practices, SEO), ключевые проблемы и какой список правок нужен в проекте.
+            4. Не коммить и не пуши изменения, не создавай PR и issues — только подготовь файлы отчёта в lighthouse-reports/.
+
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-reports/
+          if-no-files-found: warn
