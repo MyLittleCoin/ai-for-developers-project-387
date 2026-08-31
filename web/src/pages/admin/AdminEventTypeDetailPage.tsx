@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import PageHeader from "@/components/PageHeader";
 import { useAdminEventType } from "@/features/admin/useAdminEventType";
+import { formatDuration } from "@/lib/dates";
 
 export default function AdminEventTypeDetailPage() {
   const { eventTypeId = "" } = useParams();
@@ -37,7 +38,7 @@ export default function AdminEventTypeDetailPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Длительность: {data.durationMinutes} мин
+              Длительность: {formatDuration(data.durationMinutes)}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
               ID: {data.id}
