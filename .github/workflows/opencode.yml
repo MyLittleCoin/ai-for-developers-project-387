@@ -26,8 +26,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
-          persist-credentials: false
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
 
       - name: Run OpenCode
         uses: anomalyco/opencode/github@latest
