@@ -25,6 +25,7 @@ export function formatDateTime(iso: string) {
   return format(new Date(iso), "dd.MM.yyyy HH:mm");
 }
 
+// Форматирует длительность в минутах как «30 мин», «2 ч» или «1 ч 30 мин».
 export function formatDuration(minutes: number) {
   if (minutes < 60) return `${minutes} мин`;
   const hours = Math.floor(minutes / 60);
