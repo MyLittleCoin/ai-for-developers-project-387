@@ -1,6 +1,6 @@
 {
   "name": "calendar-booking-service",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "TypeSpec API contract for the calendar booking service",
   "private": true,
   "scripts": {
