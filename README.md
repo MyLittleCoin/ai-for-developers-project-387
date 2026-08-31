@@ -1,39 +1,63 @@
-# Календарь звонков (продолжение)
+# Calendar Booking Service
+### Deploy link
+https://web-production-e3ae22.up.railway.app/
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/MyLittleCoin/ai-for-developers-project-386/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MyLittleCoin/ai-for-developers-project-386/actions)
 
+Сервис бронирования календаря. В репозитории есть TypeSpec-контракт API
+(`main.tsp`), бэкенд (`server/`) на Fastify + TypeScript с in-memory
+хранилищем и фронтенд (`web/`) на Vite + React + TypeScript + shadcn/ui.
 
-[![hexlet-check](https://github.com/MyLittleCoin/ai-for-developers-project-387/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MyLittleCoin/ai-for-developers-project-387/actions)
+## Разработка
 
-Интегрируйте работу агентов в GitHub проект
-
-Учебный проект Хекслета: https://ru.hexlet.io/programs/ai-for-developers
-Как это должно работать: https://files.hexlet.app/a/2ipc5m
-
-## Стек
-
-- Разное
-
-## Установка
-
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
+Подготовка типов из контракта:
 
 ```bash
-git clone https://github.com/MyLittleCoin/ai-for-developers-project-387.git
-cd ai-for-developers-project-387
+npm run gen:types       # сгенерировать dist/openapi.yaml и web/src/lib/schema.ts
 ```
 
-## Использование
+Бэкенд и фронтенд — два процесса (удобно запускать одной командой):
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+npm run dev             # бэкенд :4011 + Vite :5173 параллельно
+```
 
----
+По отдельности:
 
-<details>
-<summary>Автоматические тесты Хекслета</summary>
+```bash
+npm run dev:backend     # Fastify-бэкенд на http://localhost:4011 (PORT для смены порта)
+npm run dev:front       # Vite dev-сервер на http://localhost:5173
+```
 
-Тесты запускаются на каждый коммит. За запуск отвечает файл `.github/workflows/hexlet-check.yml` — не удаляйте и не переименовывайте ни его, ни репозиторий.
+Хранилище in-memory: после перезапуска сервиса данные сбрасываются.
 
-</details>
+Мок-сервер по контракту для сверки спецификации:
 
-## О Хекслете
+```bash
+npm run gen
+npm run dev:mock        # Prism-мок на http://localhost:4010
+```
 
-[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
+Vite dev-сервер проксирует `/api` на бэкенд (`VITE_PROXY_TARGET` для смены
+цели), поэтому API в браузере отвечает по реальным данным.
+
+Тесты и сборка:
+
+```bash
+npm --prefix web run test      # Vitest (фронтенд)
+npm --prefix server run test   # Vitest (бэкенд)
+npm --prefix server run build  # typecheck (tsc)
+```
+
+## API
+
+Контракт описан в `main.tsp` (TypeSpec). Открытая спецификация генерируется
+в `dist/openapi.yaml`:
+
+```bash
+npm run gen
+```
+
+- **Гость**: `GET /event-types`, `GET /event-types/{id}/slots`, `POST /bookings`
+- **Админ** (без авторизации): `GET /admin/event-types`, `POST /admin/event-types`,
+  `GET /admin/event-types/{id}`, `GET /admin/bookings`

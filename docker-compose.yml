@@ -1,0 +1,19 @@
+services:
+  calendar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # npm must reach the host's proxy (e.g. HTTP_PROXY=http://127.0.0.1:10808)
+      # during the build; host networking makes 127.0.0.1 the actual host.
+      # Runtime networking stays on the default bridge.
+      network: host
+      args:
+        HTTP_PROXY: "${HTTP_PROXY:-}"
+        HTTPS_PROXY: "${HTTPS_PROXY:-}"
+        NO_PROXY: "${NO_PROXY:-}"
+    ports:
+      - "${PORT:-8080}:${PORT:-8080}"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "${PORT:-8080}"
+    restart: unless-stopped

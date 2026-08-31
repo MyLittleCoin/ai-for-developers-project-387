@@ -1,0 +1,12 @@
+# ---------- Docker build context exclusions ----------
+.git
+.gitignore
+**/node_modules
+**/dist
+**/*.log
+e2e
+opencode.json
+*.md
+PROGRESS.md
+.env
+.gitkeep
