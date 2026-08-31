@@ -35,7 +35,7 @@ const types: EventType[] = [
     id: "consult",
     name: "Консультация",
     description: "Разбор вопросов по работе",
-    durationMinutes: 60,
+    durationMinutes: 90,
   },
 ];
 
@@ -49,6 +49,7 @@ describe("HomePage", () => {
     expect(await screen.findByText("Вводная встреча")).toBeInTheDocument();
     expect(screen.getByText("Знакомство и обзор проекта")).toBeInTheDocument();
     expect(screen.getByText("30 мин")).toBeInTheDocument();
+    expect(screen.getByText("1 ч 30 мин")).toBeInTheDocument();
     expect(screen.getByText("Консультация")).toBeInTheDocument();
 
     const link = screen

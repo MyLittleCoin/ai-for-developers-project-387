@@ -24,3 +24,10 @@ export function formatTime(iso: string) {
 export function formatDateTime(iso: string) {
   return format(new Date(iso), "dd.MM.yyyy HH:mm");
 }
+
+export function formatDuration(minutes: number) {
+  if (minutes < 60) return `${minutes} мин`;
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  return rest === 0 ? `${hours} ч` : `${hours} ч ${rest} мин`;
+}
