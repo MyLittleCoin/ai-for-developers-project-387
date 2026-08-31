@@ -31,9 +31,10 @@ jobs:
 
       - name: Run OpenCode
         uses: anomalyco/opencode/github@latest
+
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
         with:
-          model: local-deepseek/deepseek-v4-flash
+          model: vllm/deepseek-v4-flash
           use_github_token: true
