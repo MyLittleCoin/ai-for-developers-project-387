@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.2](https://github.com/MyLittleCoin/ai-for-developers-project-387/compare/calendar-booking-service-v1.1.1...calendar-booking-service-v1.1.2) (2026-08-31)
+
+
+### Continuous Integration
+
+* add doom_loop guard and workflow timeouts ([dfe7b1f](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/dfe7b1f921eb3c62171b9486236382743106619b))
+* add nightly lighthouse audit workflow (08:00 MSK) ([cd45eda](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/cd45edae29dc4e26218bf4c25dcae9f6c08f38a4))
+* allow opencode to write to /tmp for lighthouse logs ([beef618](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/beef61801366bb2b6abaf6bc5116f9a789e86a29))
+
 ## [1.1.1](https://github.com/MyLittleCoin/ai-for-developers-project-387/compare/calendar-booking-service-v1.1.0...calendar-booking-service-v1.1.1) (2026-08-31)
 
 
