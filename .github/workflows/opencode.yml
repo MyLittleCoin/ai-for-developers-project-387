@@ -26,14 +26,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
-          persist-credentials: false
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
 
       - name: Run OpenCode
         uses: anomalyco/opencode/github@latest
+
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
         with:
-          model: local-deepseek/deepseek-v4-flash
+          model: vllm/deepseek-v4-flash
           use_github_token: true
