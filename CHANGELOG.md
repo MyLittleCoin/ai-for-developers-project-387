@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.1](https://github.com/MyLittleCoin/ai-for-developers-project-387/compare/calendar-booking-service-v1.1.0...calendar-booking-service-v1.1.1) (2026-08-31)
+
+
+### Documentation
+
+* **web:** прокомментировать formatDuration ([08f883b](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/08f883bc0b3ebc1b2281a86e59c7fe6c28449854))
+
+
+### Miscellaneous Chores
+
+* **ci:** switch opencode model to deepseek-v4-flash-free ([68c2ef5](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/68c2ef5350203254ea3df09eaee7f5cf16b9fb01))
+* **ci:** switch opencode model to openrouter ([9fa47b9](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/9fa47b94d1450ccf2a428ed046fd1f78c44bfbe5))
+
+
+### Continuous Integration
+
+* **opencode:** switch to self-hosted runner and local vLLM model ([b7b78c4](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/b7b78c423fddd58101fa498ac3f7d3e7c16c76bc))
+* **release:** add release-please workflow and config ([6197f87](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/6197f87d18d3dd2f82d198473fa30cf50683f931))
+* **release:** fix release-please action name ([a6da555](https://github.com/MyLittleCoin/ai-for-developers-project-387/commit/a6da555afdcf8fc4f2a7cec25f017770a7b57d6c))
+
 ## [1.1.0](https://github.com/MyLittleCoin/ai-for-developers-project-386/compare/v1.0.0...v1.1.0) (2026-08-16)
 
 
