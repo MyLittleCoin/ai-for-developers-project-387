@@ -34,6 +34,12 @@ const types: EventType[] = [
     description: "Знакомство",
     durationMinutes: 30,
   },
+  {
+    id: "workshop",
+    name: "Воркшоп",
+    description: "Глубокая проработка",
+    durationMinutes: 90,
+  },
 ];
 
 describe("AdminEventTypesPage", () => {
@@ -44,10 +50,10 @@ describe("AdminEventTypesPage", () => {
     renderPage();
     expect(await screen.findByText("Вводная встреча")).toBeInTheDocument();
     expect(screen.getByText("Знакомство")).toBeInTheDocument();
-    expect(screen.getByText("30")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /подробнее/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByText("30 минут")).toBeInTheDocument();
+    expect(screen.getByText("Воркшоп")).toBeInTheDocument();
+    expect(screen.getByText("1 час 30 минут")).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /подробнее/i })).toHaveLength(2);
   });
 
   it("creates an event type and refreshes the list", async () => {

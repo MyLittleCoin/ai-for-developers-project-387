@@ -37,6 +37,12 @@ const types: EventType[] = [
     description: "Разбор вопросов по работе",
     durationMinutes: 60,
   },
+  {
+    id: "workshop",
+    name: "Воркшоп",
+    description: "Глубокая проработка темы",
+    durationMinutes: 90,
+  },
 ];
 
 describe("HomePage", () => {
@@ -48,8 +54,10 @@ describe("HomePage", () => {
 
     expect(await screen.findByText("Вводная встреча")).toBeInTheDocument();
     expect(screen.getByText("Знакомство и обзор проекта")).toBeInTheDocument();
-    expect(screen.getByText("30 мин")).toBeInTheDocument();
-    expect(screen.getByText("Консультация")).toBeInTheDocument();
+    expect(screen.getByText("30 минут")).toBeInTheDocument();
+    expect(screen.getByText("1 час")).toBeInTheDocument();
+    expect(screen.getByText("Воркшоп")).toBeInTheDocument();
+    expect(screen.getByText("1 час 30 минут")).toBeInTheDocument();
 
     const link = screen
       .getAllByRole("link", { name: /выбрать время/i })[0]

@@ -24,3 +24,21 @@ export function formatTime(iso: string) {
 export function formatDateTime(iso: string) {
   return format(new Date(iso), "dd.MM.yyyy HH:mm");
 }
+
+function plural(n: number, one: string, few: string, many: string) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+  return many;
+}
+
+export function formatDuration(minutes: number) {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  const hoursPart =
+    hours > 0 ? `${hours} ${plural(hours, "час", "часа", "часов")}` : "";
+  if (mins === 0) return hoursPart || "0 минут";
+  const minsPart = `${mins} ${plural(mins, "минута", "минуты", "минут")}`;
+  return hoursPart ? `${hoursPart} ${minsPart}` : minsPart;
+}
